@@ -1,1 +1,9 @@
-Registro de execução da Atividade 2.
+=== PARTE 1: sem sincronismo ===
+leituras=360 escritas=120 inconsistencias=166 tempo=0.151s
+
+=== PARTE 2: com sincronismo (Readers-Writers Lock) ===
+leituras=360 escritas=120 inconsistencias=0 tempo=0.308s
+
+=== COMPARATIVO ===
+inconsistencias evitadas = 166
+esperado: inconsistências > 0 sem sincronismo e ~0 com sincronismo

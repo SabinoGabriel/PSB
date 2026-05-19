@@ -25,8 +25,9 @@ Esta atividade é um **experimento de Sistemas Operacionais em ambiente Linux (U
 
 - A carga computacional foi mantida sem condicionais internas para preservar estabilidade do custo por iteração.
 - Um processo trabalhador executa a rotina intensiva.
-- O processo principal observa progresso e tempo de execução.
+- O processo principal observa progresso, tempo de execução e consumo de CPU.
 - O controle de partilha de CPU considera pesos reais associados a valores de `nice` no **CFS (Completely Fair Scheduler)**.
+- A validação principal foi feita com disputa real no mesmo núcleo usando `taskset -c 0`.
 
 ## Conceitos de SO evidenciados
 
@@ -41,17 +42,21 @@ Esta atividade é um **experimento de Sistemas Operacionais em ambiente Linux (U
 
 ## Comandos de execução
 
+Do diretório raiz do repositório:
+
 ```bash
-sudo taskset -c 0 python3 atividade1.py
+sudo taskset -c 0 python3 atividade1/atividade1.py
 ```
 
-Com concorrência no mesmo núcleo:
+Validação opcional com concorrência no mesmo núcleo:
 
 ```bash
 sudo taskset -c 0 python3 concorrente.py &
-sudo taskset -c 0 python3 atividade1.py
+sudo taskset -c 0 python3 atividade1/atividade1.py
 ```
 
-## Observação
+## Observações
 
-A reprodução dos resultados requer Linux. O uso de `taskset`, `/proc` e política de escalonamento do kernel é central para o experimento.
+- Para reduzir `nice` para valores negativos (maior prioridade), normalmente é necessário executar com `sudo`.
+- O script `concorrente.py` foi usado como apoio de validação experimental e **não é parte obrigatória da entrega** deste repositório.
+- A reprodução dos resultados depende de Linux, especialmente pelo uso de `taskset`, `/proc` e política de escalonamento do kernel.

@@ -72,7 +72,7 @@ A disciplina investiga fundamentos de software em nível de sistema por meio de 
 sudo taskset -c 0 python3 atividade1/atividade1.py
 ```
 
-Para gerar concorrência no mesmo núcleo:
+Validação experimental com processo concorrente no mesmo núcleo (arquivo de apoio não obrigatório no repositório):
 
 ```bash
 sudo taskset -c 0 python3 concorrente.py &
@@ -82,10 +82,7 @@ sudo taskset -c 0 python3 atividade1/atividade1.py
 ### Atividade 2 (portável)
 
 ```bash
-mkdir -p ~/atividade_psb
-cd ~/atividade_psb
-python3 --version
-python3 atividade2.py | tee log_atividade2.txt
+python3 atividade2/atividade2.py | tee atividade2/log_atividade2.txt
 ```
 
 > Observação: a Atividade 2 usa somente biblioteca padrão do Python e é portável. A validação principal foi feita em Ubuntu.
@@ -125,12 +122,10 @@ Repositório acadêmico da disciplina PSB (UFRPE) com experimentos de escaloname
 
 ## O que colocar no repositório
 
-- [x] `README.md` principal com contexto acadêmico da disciplina
-- [x] `atividade1/README.md` com foco em escalonamento, prioridade e afinidade no Linux
-- [x] `atividade2/README.md` com comparação sem/com sincronização
-- [x] `docs/resumo_disciplina.md`
-- [x] Estrutura de pastas conforme proposta
-- [x] `.gitignore` para Python
-- [x] `LICENSE` (MIT)
-- [x] Sugestões de descrição curta, tópicos e commits iniciais
-- [ ] Arquivos de implementação e relatórios finais da disciplina (`atividade1.py`, `atividade2.py`, relatórios e logs reais)
+- [x] estrutura de pastas
+- [x] documentação principal
+- [x] documentação por atividade
+- [x] relatórios
+- [x] códigos
+- [x] logs
+- [x] arquivos auxiliares de configuração

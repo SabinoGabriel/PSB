@@ -56,10 +56,7 @@ Aplicação de Readers-Writers Lock com:
 ## Procedimento de execução
 
 ```bash
-mkdir -p ~/atividade_psb
-cd ~/atividade_psb
-python3 --version
-python3 atividade2.py | tee log_atividade2.txt
+python3 atividade2/atividade2.py | tee atividade2/log_atividade2.txt
 ```
 
 ## Observação
