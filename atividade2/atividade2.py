@@ -106,10 +106,10 @@ def executar_com_sincronismo(leitores: int, escritores: int, iteracoes: int) -> 
                 versao = estado["versao"]
                 if valor != versao:
                     local_inconsistencias += 1
+                with lock_contadores:
+                    contadores["leituras"] += 1
             finally:
                 lock.release_read()
-            with lock_contadores:
-                contadores["leituras"] += 1
             time.sleep(random.uniform(0.0004, 0.0013))
         with lock_contadores:
             contadores["inconsistencias"] += local_inconsistencias

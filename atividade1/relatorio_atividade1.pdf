@@ -9,20 +9,20 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 415 >>
+<< /Length 406 >>
 stream
 BT
 /F1 12 Tf
 50 780 Td
-(Relatório Atividade 1 - PSB/UFRPE) Tj
+(Activity 1 Report - PSB/UFRPE) Tj
 0 -18 Td
-(Tema: prioridade nice, afinidade de CPU e monitoramento via /proc.) Tj
+(Topic: nice priority, CPU affinity, and /proc process monitoring.) Tj
 0 -18 Td
-(Resumo: experimento Linux com carga CPU-bound calibrada para alvo de tempo.) Tj
+(Summary: Linux experiment with CPU-bound workload calibrated to wall-clock target.) Tj
 0 -18 Td
-(Técnicas: taskset -c 0, os.setpriority/os.nice, /proc/<pid>/stat e monitor principal.) Tj
+(Methods: taskset -c 0, os.setpriority/os.nice, /proc/<pid>/stat, monitor process.) Tj
 0 -18 Td
-(Conceitos: CFS, partilha de CPU, tempo de CPU vs tempo de parede.) Tj
+(Concepts: CFS, CPU share, CPU time versus wall-clock time.) Tj
 ET
 endstream
 endobj
@@ -36,9 +36,9 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000000707 00000 n 
+0000000698 00000 n 
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-777
+768
 %%EOF

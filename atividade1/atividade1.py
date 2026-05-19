@@ -91,7 +91,10 @@ def executar_experimento(alvo_segundos: float, total_blocos: int, iteracoes_por_
 
     pid = trabalhador.pid
     if pid is None:
-        raise RuntimeError("Falha ao iniciar processo trabalhador.")
+        raise RuntimeError(
+            "Falha ao iniciar processo trabalhador. Verifique disponibilidade de recursos "
+            "do sistema e permissões do ambiente de execução (pid retornou None)."
+        )
 
     tick_hz = os.sysconf(os.sysconf_names["SC_CLK_TCK"])
     nice_atual = os.getpriority(os.PRIO_PROCESS, pid)
