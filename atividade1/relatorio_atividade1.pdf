@@ -14,13 +14,13 @@ stream
 BT
 /F1 12 Tf
 50 780 Td
-(Relatorio Atividade 1 - PSB/UFRPE) Tj
+(Relatório Atividade 1 - PSB/UFRPE) Tj
 0 -18 Td
 (Tema: prioridade nice, afinidade de CPU e monitoramento via /proc.) Tj
 0 -18 Td
 (Resumo: experimento Linux com carga CPU-bound calibrada para alvo de tempo.) Tj
 0 -18 Td
-(Tecnicas: taskset -c 0, os.setpriority/os.nice, /proc/<pid>/stat e monitor principal.) Tj
+(Técnicas: taskset -c 0, os.setpriority/os.nice, /proc/<pid>/stat e monitor principal.) Tj
 0 -18 Td
 (Conceitos: CFS, partilha de CPU, tempo de CPU vs tempo de parede.) Tj
 ET

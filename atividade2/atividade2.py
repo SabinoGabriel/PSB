@@ -47,6 +47,7 @@ class ReadersWritersLock:
 def executar_sem_sincronismo(leitores: int, escritores: int, iteracoes: int) -> ResultadoExecucao:
     estado = {"valor": 0, "versao": 0}
     contadores = {"inconsistencias": 0, "leituras": 0, "escritas": 0}
+    lock_contadores = threading.Lock()
 
     def leitor(_: int) -> None:
         local_inconsistencias = 0
@@ -56,9 +57,11 @@ def executar_sem_sincronismo(leitores: int, escritores: int, iteracoes: int) -> 
             versao = estado["versao"]
             if valor != versao:
                 local_inconsistencias += 1
-            contadores["leituras"] += 1
+            with lock_contadores:
+                contadores["leituras"] += 1
             time.sleep(random.uniform(0.0004, 0.0013))
-        contadores["inconsistencias"] += local_inconsistencias
+        with lock_contadores:
+            contadores["inconsistencias"] += local_inconsistencias
 
     def escritor(identificador: int) -> None:
         for passo in range(iteracoes):
@@ -66,7 +69,8 @@ def executar_sem_sincronismo(leitores: int, escritores: int, iteracoes: int) -> 
             estado["valor"] = novo_valor
             time.sleep(random.uniform(0.0008, 0.0022))
             estado["versao"] = novo_valor
-            contadores["escritas"] += 1
+            with lock_contadores:
+                contadores["escritas"] += 1
             time.sleep(random.uniform(0.0004, 0.0012))
 
     inicio = time.time()
@@ -90,6 +94,7 @@ def executar_com_sincronismo(leitores: int, escritores: int, iteracoes: int) -> 
     lock = ReadersWritersLock()
     estado = {"valor": 0, "versao": 0}
     contadores = {"inconsistencias": 0, "leituras": 0, "escritas": 0}
+    lock_contadores = threading.Lock()
 
     def leitor(_: int) -> None:
         local_inconsistencias = 0
@@ -103,9 +108,11 @@ def executar_com_sincronismo(leitores: int, escritores: int, iteracoes: int) -> 
                     local_inconsistencias += 1
             finally:
                 lock.release_read()
-            contadores["leituras"] += 1
+            with lock_contadores:
+                contadores["leituras"] += 1
             time.sleep(random.uniform(0.0004, 0.0013))
-        contadores["inconsistencias"] += local_inconsistencias
+        with lock_contadores:
+            contadores["inconsistencias"] += local_inconsistencias
 
     def escritor(identificador: int) -> None:
         for passo in range(iteracoes):
@@ -117,7 +124,8 @@ def executar_com_sincronismo(leitores: int, escritores: int, iteracoes: int) -> 
                 estado["versao"] = novo_valor
             finally:
                 lock.release_write()
-            contadores["escritas"] += 1
+            with lock_contadores:
+                contadores["escritas"] += 1
             time.sleep(random.uniform(0.0004, 0.0012))
 
     inicio = time.time()

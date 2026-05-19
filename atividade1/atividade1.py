@@ -56,7 +56,7 @@ def carga_intensiva(total_blocos: int, iteracoes_por_bloco: int, fila: mp.Queue)
 
 def ajustar_prioridade(pid: int, nice_atual: int, total_blocos: int, concluidos: int, decorrido: float, alvo: float) -> int:
     """Ajusta nice dinamicamente para aproximar o tempo de parede ao alvo."""
-    if concluidos <= 0 or decorrido <= 0:
+    if concluidos < 1 or decorrido <= 0:
         return nice_atual
 
     fracao_esperada = min(1.0, decorrido / alvo)
