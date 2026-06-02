@@ -19,7 +19,7 @@ psb/
 ├── atividade1/
 │   ├── README.md
 │   ├── atividade1.py
-│   └── relatorio_atividade1.pdf
+│   └── relatorio_atividade1.md
 ├── atividade2/
 │   ├── README.md
 │   ├── atividade2.py
