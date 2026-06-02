@@ -1,9 +1,0 @@
-=== PARTE 1: sem sincronismo ===
-leituras=360 escritas=120 inconsistencias=165 tempo=0.152s
-
-=== PARTE 2: com sincronismo (Readers-Writers Lock) ===
-leituras=360 escritas=120 inconsistencias=0 tempo=0.298s
-
-=== COMPARATIVO ===
-inconsistencias evitadas = 165
-esperado: inconsistências > 0 sem sincronismo e ~0 com sincronismo
