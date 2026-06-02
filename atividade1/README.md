@@ -12,11 +12,20 @@ O ajuste usa os pesos do CFS associados aos valores de `nice`, evitando uma sequ
 
 ## Características da carga
 
-- sem `if` no laço principal;
-- sem `break`;
-- sem `print`;
-- sem `sleep`;
-- envio de progresso apenas ao final de cada bloco.
+A função `carga_intensiva` mantém o laço interno sem `if`, `break`, `print` ou `sleep`.
+
+O envio `fila.put(bloco)` ocorre somente ao final de cada bloco, fora do laço interno, para que o monitor conheça o progresso real da carga. O envio final `fila.put((total_blocos, acumulador))` transporta o checksum após o último bloco.
+
+O monitor externo não segue essa restrição: ele pode usar condicionais, espera curta e impressão de log porque não faz parte da carga computacional principal.
+
+## Parâmetros
+
+- `--duracao-alvo`: tempo de parede desejado, por padrão 60 segundos;
+- `--blocos`: número de blocos da carga;
+- `--iteracoes-por-bloco`: quantidade de iterações em cada bloco;
+- `--intervalo-monitor`: intervalo entre leituras do monitor.
+
+O monitor drena a fila a cada ciclo e mantém o estado mais recente observado. Assim, `blocos` representa o último progresso recebido, não uma soma feita pelo monitor.
 
 ## Execução
 

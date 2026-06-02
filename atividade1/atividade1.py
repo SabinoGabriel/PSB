@@ -127,6 +127,13 @@ def executar_experimento(alvo: float, total_blocos: int, iteracoes_por_bloco: in
             break
         novo_nice = calcular_nice(nice_atual, total_blocos, blocos, tempo, cpu, alvo)
         nice_atual = ajustar_prioridade(pid, nice_atual, novo_nice)
+        print(
+            f"t={tempo:5.1f}s "
+            f"blocos={blocos:3d}/{total_blocos} "
+            f"cpu={cpu:6.2f}s "
+            f"nice={nice_atual:3d}",
+            flush=True,
+        )
         time.sleep(intervalo)
 
     processo.join()
@@ -152,11 +159,19 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    executar_experimento(
+    resultado = executar_experimento(
         alvo=args.duracao_alvo,
         total_blocos=args.blocos,
         iteracoes_por_bloco=args.iteracoes_por_bloco,
         intervalo=args.intervalo_monitor,
+    )
+    checksum = "None" if resultado.checksum is None else f"{resultado.checksum:#010x}"
+    print(
+        f"resultado: blocos={resultado.blocos} "
+        f"tempo={resultado.tempo:.2f}s "
+        f"cpu={resultado.cpu:.2f}s "
+        f"nice={resultado.nice} "
+        f"checksum={checksum}"
     )
 
 

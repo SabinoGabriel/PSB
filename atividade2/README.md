@@ -17,6 +17,10 @@ O código usa apenas a biblioteca padrão do Python:
 
 Na primeira parte, leitores e escritores acessam os mesmos dados sem proteger a região crítica. Na segunda, leitores podem executar em paralelo, mas escritores entram com acesso exclusivo.
 
+Os `sleep()` curtos são intencionais: eles aumentam a chance de trocas de contexto entre threads e tornam a condição de corrida mais visível na versão sem sincronismo.
+
+O lock implementado usa prioridade para leitores. Isso preserva paralelismo de leitura, mas pode atrasar escritores se novos leitores chegarem continuamente.
+
 ## Execução
 
 ```bash
@@ -31,4 +35,5 @@ python3 atividade2/atividade2.py
 - exclusão mútua;
 - sincronização;
 - escrita exclusiva;
-- paralelismo entre leitores.
+- paralelismo entre leitores;
+- possível starvation de escritores em política com prioridade para leitores.

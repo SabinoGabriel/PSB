@@ -65,6 +65,8 @@ def carga_intensiva(total_blocos: int, iteracoes_por_bloco: int, fila: mp.Queue)
 
 O laço interno não possui condicionais, interrupções artificiais, impressão ou espera. O envio para a fila ocorre apenas ao final de cada bloco.
 
+Esse envio de progresso é usado pelo monitor para projetar o trabalho restante. O envio final com tupla carrega o `checksum`, servindo como evidência simples de que a carga foi percorrida até o fim.
+
 ## 6. Controle por CFS
 
 O código usa a tabela de pesos do CFS para valores de `nice` de `-20` a `19`. O monitor calcula um peso alvo conforme a proporção de CPU necessária para terminar próximo da meta e escolhe o `nice` cujo peso fica mais próximo:
@@ -108,7 +110,9 @@ Durante a validação, o comportamento esperado é:
 - `nice` menor quando o processo precisa receber mais CPU;
 - `nice` maior quando o processo está adiantado;
 - tempo de parede final próximo da meta;
-- carga principal preservada sem instrumentação interna pesada.
+- carga principal preservada sem instrumentação interna pesada;
+- log periódico no terminal com tempo, blocos concluídos, CPU consumida e `nice` atual;
+- resumo final com quantidade de blocos, tempo total, CPU, `nice` final e checksum.
 
 ## 9. Conclusão
 
